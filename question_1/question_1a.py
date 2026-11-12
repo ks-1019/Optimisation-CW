@@ -2,8 +2,8 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
-file_path_t = Path(__file__).resolve().parents[2] / "data" / "trainingI.dat"
-file_path_v = Path(__file__).resolve().parents[2] / "data" / "validationI.dat"
+file_path_t = Path(__file__).resolve().parents[1] / "data" / "trainingI.dat"
+file_path_v = Path(__file__).resolve().parents[1] / "data" / "validationI.dat"
 training_data = np.loadtxt(file_path_t)
 validation_data = np.loadtxt(file_path_v)
 
@@ -18,12 +18,12 @@ def legendre_design_matrix(x, degree):
         X[:, k+1] = ((2*k + 1) * x * X[:, k] - (k * X[:, k-1])) / (k+1)
     return X
 
-A_train = legendre_design_matrix(x_train, 8)
+A_train = legendre_design_matrix(x_train, 7)
 # Solve LLS with training data
 theta, residuals, _, _ = np.linalg.lstsq(A_train, b_train, rcond=None)
 
 # Validation and MSE
-A_val = legendre_design_matrix(x_val, 8)
+A_val = legendre_design_matrix(x_val, 7)
 V_theta = A_val @ theta
 val_mse = np.mean((V_theta - V_val)**2)
 print(f"Validation MSE: {val_mse:.6e}")
@@ -31,7 +31,7 @@ print(f"Sum of residuals: {residuals}")
 print(f"Vector of residuals: {A_train @ theta - b_train}")
 
 x_fit = np.linspace(min(x_train.min(), x_val.min()), max(x_train.max(), x_val.max()), 300)
-V_fit = legendre_design_matrix(x_fit, 8) @ theta
+V_fit = legendre_design_matrix(x_fit, 7) @ theta
 
 # 3. Plot training data, least-squares fit, and validation curve
 plt.figure(figsize=(8, 5))
