@@ -27,7 +27,7 @@ A_val = legendre_design_matrix(x_val, 7)
 V_theta = A_val @ theta
 val_mse = np.mean((V_theta - V_val)**2)
 print(f"Validation MSE: {val_mse:.6e}")
-print(f"Sum of residuals: {residuals}")
+print(f"Sum of squared residuals: {residuals}")
 print(f"Vector of residuals: {A_train @ theta - b_train}")
 
 x_fit = np.linspace(min(x_train.min(), x_val.min()), max(x_train.max(), x_val.max()), 300)
