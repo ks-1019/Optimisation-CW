@@ -8,7 +8,7 @@ from scipy.optimize import minimize
 def huber_loss(theta, A, b, epsilon):
     r = A @ theta - b
     abs_r = abs(r)
-    losses = np.where(abs_r <= epsilon, 0.5 * r**2, epsilon * (abs_r) - 0.5 * epsilon)
+    losses = np.where(abs_r <= epsilon, 0.5 * r**2, epsilon *((abs_r) - 0.5 * epsilon))
     return np.sum(losses)
 
 def huber_grad(theta, A, b, epsilon):
