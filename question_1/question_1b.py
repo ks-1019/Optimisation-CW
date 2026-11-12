@@ -36,3 +36,4 @@ print(f"||grad F_eps(theta_LS)||_2       : {np.linalg.norm(huber_grad(theta, A_t
 print(f"||theta_huber - theta_LS||_2     : {np.linalg.norm(theta_huber - theta):.6e}")
 print(f"F_eps(theta_LS)                  : {huber_loss(theta, A_train, b_train, epsilon):.6f}")
 print(f"F_eps(theta_huber)               : {huber_loss(theta_huber, A_train, b_train, epsilon):.6f}")
+print(res.success, res.message)
