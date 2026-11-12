@@ -49,3 +49,9 @@ plt.legend()
 plt.grid(True, linestyle="--", alpha=0.5)
 plt.tight_layout()
 plt.show()
+
+def polynomial_design_matrix(x, degree):
+    return np.vander(x, N=degree+1, increasing=True)
+
+print(np.linalg.cond(np.transpose(A_train) @ A_train))  # Condition number of the design matrix
+print(np.linalg.cond(np.transpose(polynomial_design_matrix(x_train, 7)) @ polynomial_design_matrix(x_train, 7)))    # Condition number of the validation design matrix
