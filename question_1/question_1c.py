@@ -27,7 +27,6 @@ def gradient_method(loss_func, grad_func, theta0, A, b, epsilon, t, tol=1e-12, m
         if grad_norm < tol:
             print(f'Converged in {k} iterations.')
             return theta_k, k, np.array(loss_history), np.array(grad_norm_history)
-
         theta_k = theta_k - t * g
     else:
         print(f"Reached max_iter ({max_iter}) with ||grad|| = {grad_norm:.3e}")

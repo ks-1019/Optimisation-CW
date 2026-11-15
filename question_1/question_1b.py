@@ -18,7 +18,7 @@ def huber_grad(theta, A, b, epsilon):
     return A.T @ L_prime
 
 r = A_train @ theta - b_train
-epsilon = np.linalg.norm(r, ord=np.inf) - 1e-3
+epsilon = np.linalg.norm(r, ord=np.inf) - 1e-2
 
 res = minimize(
     huber_loss,
